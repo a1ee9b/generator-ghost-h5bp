@@ -1,7 +1,7 @@
 {
   "name": "generator-ghost-h5bp",
-  "version": "0.1.0",
-  "description": "Yeoman generator",
+  "version": "0.1.1",
+  "description": "This is a [Ghost](http://ghost.org) theme using [H5BP](http://html5boilerplate.com/) and [gulp](http://gulpjs.com/).",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "a1ee9b/generator-ghost-h5bp",
@@ -20,11 +20,15 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "h5bp",
+    "ghost",
+    "theme"
   ],
   "dependencies": {
     "yeoman-generator": "~0.16.0",
-    "chalk": "~0.4.0"
+    "chalk": "~0.4.0",
+    "async": "^0.2.10"
   },
   "devDependencies": {
     "mocha": "*"

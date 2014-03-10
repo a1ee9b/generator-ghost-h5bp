@@ -28,6 +28,13 @@ $ http://localhost:2368/ghost/signin/
 
 and select your new theme.
 
+
+### Working with the theme
+
+Running ```gulp``` will automatically start your ghost on ```http://localhost:2368/ghost/signin/```. (If you want to disable this function, open the gulpfile.js and change ```gulp.start( 'ghost', 'watch' );``` to ```gulp.start( 'watch' );```). Included is also livereload to automatically inject changes without manually refreshing the page.
+
+The files ```dev/scripts/main.js``` and ```dev/styles/main.css``` can be modified. Do not work in the assets/(css/js) folder. Gulp will modify this folder.
+
 ## MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

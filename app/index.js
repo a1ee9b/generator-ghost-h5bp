@@ -3,24 +3,27 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
-// var async = require('async');
-var sys = require('sys')
+var async = require('async');
 var exec = require('child_process').exec;
 
-function puts(error, stdout, stderr) { sys.puts(stdout) }
 
 var GhostH5bpGenerator = yeoman.generators.Base.extend({
   init: function () {
     this.pkg = require('../package.json');
 
     this.on('end', function () {
+
       if (!this.options['skip-install']) {
-        this.log( 'Running `npm install` and `bower install`' );
+        this.log( 'Running `npm install` and `bower install` then go to the new theme and execute `gulp`. This will start your ghost automatically and then select `'+this.templateName+'` as your new template.' );
 
-        exec( 'cd '+this.templateName+'; bower install', puts );
-        exec( 'cd '+this.templateName+'; npm install', puts );
+        async.series([
+          async.apply( exec, 'cd '+this.templateName+'; npm install' ),
+          async.apply( exec, 'cd '+this.templateName+'; bower install' )
+        ],
+        function ( err, results ) {
+          console.log( results );
+        });
 
-        this.log( 'Now go to the new theme and execute `gulp`. This will start your ghost automatically and then select `'+this.templateName+'` as your new template.' );
       }
 
     });

@@ -13,11 +13,11 @@ gulp.task( 'template', function () {
 });
 
 gulp.task( 'style', function () {
-	return gulp.src( [
-  		'bower_components/normalize-css/normalize.css',
-  		'dev/styles/boilerplate.css',
-  		'dev/styles/main.css'
-  	])
+  return gulp.src( [
+      'bower_components/normalize-css/normalize.css',
+      'dev/styles/boilerplate.css',
+      'dev/styles/main.css'
+    ])
     .pipe( concat( 'main.css' ))
     .pipe( gulp.dest( 'assets/css' ))
     .pipe( livereload( server ));
@@ -49,17 +49,18 @@ gulp.task('ghost', function() {
 
 gulp.task('watch', function() {
   // Listen on port 35729
-	server.listen( 35729, function ( err ) {
-  	if ( err ) {
-  	 return console.log( err );
-  	};
+  server.listen( 35729, function ( err ) {
+    if ( err ) {
+     return console.log( err );
+    };
 
-    // Watch .css files
     gulp.watch( 'dev/styles/*.css', ['style'] );
+    gulp.watch( 'dev/scripts/*.js', ['scripts'] );
+    gulp.watch( '*.hbs', ['template'] );
   });
 });
 
 
-gulp.task( 'default', ['style', 'lib'], function() {
+gulp.task( 'default', ['style', 'lib', 'scripts'], function() {
     gulp.start( 'ghost', 'watch' );
 });
