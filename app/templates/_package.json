@@ -1,0 +1,19 @@
+{
+  "name": "<%= _.slugify(templateName) %> ",
+  "version": "0.0.1",
+  "description": "This is a [Ghost](http://ghost.org) theme using [H5BP](http://html5boilerplate.com/) and [gulp](http://gulpjs.com/).",
+  "main": "gulp",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "<%= userName %>",
+  "license": "MIT",
+  "dependencies": {
+    "gulp": "^3.5.5",
+    "gulp-concat": "^2.1.7",
+    "gulp-exec": "^1.0.4",
+    "gulp-watch": "^0.5.0",
+    "gulp-livereload": "^1.2.0",
+    "tiny-lr": "0.0.5"
+  }
+}
