@@ -1,6 +1,6 @@
 {
   "name": "generator-ghost-h5bp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "This is a [Ghost](http://ghost.org) theme using [H5BP](http://html5boilerplate.com/) and [gulp](http://gulpjs.com/).",
   "license": "MIT",
   "main": "app/index.js",
