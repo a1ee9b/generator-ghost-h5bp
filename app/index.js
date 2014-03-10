@@ -3,8 +3,11 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
-var async = require('async');
+// var async = require('async');
+var sys = require('sys')
+var exec = require('child_process').exec;
 
+function puts(error, stdout, stderr) { sys.puts(stdout) }
 
 var GhostH5bpGenerator = yeoman.generators.Base.extend({
   init: function () {
@@ -12,42 +15,14 @@ var GhostH5bpGenerator = yeoman.generators.Base.extend({
 
     this.on('end', function () {
       if (!this.options['skip-install']) {
+        this.log( 'Running `npm install` and `bower install`' );
 
-        // TODO
-        var msg = {
-          commands: [],
-          template: '\n\nNow execute `gulp` and then select `'+this.templateName+'` as your new template.'
-        };
+        exec( 'cd '+this.templateName+'; bower install', puts );
+        exec( 'cd '+this.templateName+'; npm install', puts );
 
-        var commands = [],
-
-          options = {
-            bower: true,
-            npm: true,
-            skipInstall: false,
-            skipMessage: false,
-            callback: function () {}
-          };
-
-      if (options.bower) {
-          msg.commands.push('cd '+this.templateName+'; bower install');
-          commands.push(function (cb) {
-            this.bowerInstall(null, null, cb);
-          }.bind(this));
-        }
-
-        if (options.npm) {
-          msg.commands.push('cd '+this.templateName+'; npm install');
-          commands.push(function (cb) {
-            this.npmInstall(null, null, cb);
-          }.bind(this));
-        }
-
-        if (!options.skipInstall) {
-          async.parallel(commands, options.callback);
-        }
-
+        this.log( 'Now go to the new theme and execute `gulp`. This will start your ghost automatically and then select `'+this.templateName+'` as your new template.' );
       }
+
     });
   },
 
